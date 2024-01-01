@@ -1,11 +1,12 @@
+
 #!/usr/bin/env python3
-""" This module contains the function element_length """
+"""
+9-element_length module"""
 
 
-from typing import List, Tuple
+from typing import Tuple, Sequence, List, Iterable
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
-    """ This function takes a list lst of strings and returns a list of
-    tuples, each tuple having a string and an int. The string of the tuple"""
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
+    """ Returns a list of tuples with the length of each element"""
     return [(i, len(i)) for i in lst]
