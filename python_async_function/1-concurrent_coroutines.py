@@ -9,9 +9,8 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """ This a coroutine that takes in two arguments."""
-    tasks = [wait_random(max_delay) for _ in range(n)]
-    delays = []
+    tasks = [asyncio.create_task(wait_random(max_delay)) for i in range(n)]
+    delay = []
     for future in asyncio.as_completed(tasks):
-        delays = await future
-        delays.append(delays)
-    return delays
+        delay.append(await future)
+    return [await task for task in asyncio.as_completed(tasks)]
