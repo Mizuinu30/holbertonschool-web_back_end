@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-0x02. Asynchronous Programming"""
+""" a coroutine called async_comprehension that takes no arguments. """
 
 
 from typing import List
