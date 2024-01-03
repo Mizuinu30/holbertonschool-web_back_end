@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""This module contains a coroutine."""
-
-
-import time
-from typing import List
+""" 2. Measure the runtime """
+import asyncio
+from time import perf_counter
 wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
-async def measure_time(n: int, max_delay: int) -> float:
-    start_time = time.time()
-    await wait_n(n, max_delay)
-    end_time = time.time()
-    total_time = end_time - start_time
-    return total_time / n
+def measure_time(n: int, max_delay: int) -> float:
+    """ measure_time: takes in two int arguments (in this order):
+     n and max_delay. You will spawn wait_n(n, max_delay)
+      with the specified arguments
+    """
+    start_time = perf_counter()
+    asyncio.run(wait_n(n, max_delay))
+
+    end_time = perf_counter()
+    return (end_time - start_time) / n
