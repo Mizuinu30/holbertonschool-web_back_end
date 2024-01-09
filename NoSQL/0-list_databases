@@ -1,0 +1,20 @@
+// Code: Listing all databases
+
+
+
+const MongoClient = require('mongodb').MongoClient;
+
+const url = 'mongodb://localhost:27017';
+
+MongoClient.connect(url, function(err, client) {
+  if (err) throw err;
+
+  client.db().admin().listDatabases(function(err, result) {
+    if (err) throw err;
+
+    console.log("Databases:");
+    result.databases.forEach(db => console.log(` - ${db.name}`));
+
+    client.close();
+  });
+});
