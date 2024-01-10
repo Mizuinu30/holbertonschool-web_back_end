@@ -1,0 +1,2 @@
+// 2-insert
+db.getSiblingDB(dbName).school.insertOne({ name: "Holberton school" });
