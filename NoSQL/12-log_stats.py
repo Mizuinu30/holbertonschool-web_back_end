@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-""" Log stats """
-
-
+"""
+Module defines a function that provides some stats about Nginx logs stored
+in MongoDB.
+"""
 from pymongo import MongoClient
 
 
 def data_logs():
-    """ Data logs """
+    """
+    Gather the logs collection from the database logs
+    and return it.
+    """
     client = MongoClient('mongodb://127.0.0.1:27017')
     logs_db = client.logs
     nginx_collection = logs_db.nginx
