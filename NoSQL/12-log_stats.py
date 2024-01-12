@@ -3,24 +3,20 @@
 from pymongo import MongoClient
 
 
-def helper(a: dict) -> int:
-    """return log"""
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    logs = client.logs.nginx
-    return logs.count_documents(a)
+client = MongoClient('mongodb://127.0.0.1:27017')
+db = client.logs
+collection = db.ngnix
 
+# Get total logs
+total_logs = collection.count_documents({})
 
-def main():
-    """ provides some stats about Nginx logs stored in MongoDB """
-    print(f"{helper({})} logs")
-    print("Methods:")
-    print(f"\tmethod GET: {helper({'method': 'GET'})}")
-    print(f"\tmethod POST: {helper({'method': 'POST'})}")
-    print(f"\tmethod PUT: {helper({'method': 'PUT'})}")
-    print(f"\tmethod PATCH: {helper({'method': 'PATCH'})}")
-    print(f"\tmethod DELETE: {helper({'method': 'DELETE'})}")
-    print(f"{helper({'method': 'GET', 'path': '/status'})} status check")
+methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+methods_count = {method: collection.count_documents({"method": method}) for method in methods}
 
+status_counts = collection.count_documents({"method": "GET", "path": "/status"})
 
-if __name__ == "__main__":
-    main()
+print(f"{total_logs} logs")
+print("Methods:")
+for methods in methods:
+    print(f"\tmethod {methods}: {methods_count[methods]}")
+print(f"{status_counts} status check")
