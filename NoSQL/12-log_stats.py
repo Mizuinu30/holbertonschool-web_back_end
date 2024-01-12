@@ -2,23 +2,25 @@
 """Log stats"""
 from pymongo import MongoClient
 
-# Client
-client = MongoClient('mongodb://127.0.0.1:27017')
 
-# Database
-db = client.logs
-collection = db.ngnix
+def helper(a: dict) -> int:
+    """return log"""
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    logs = client.logs.nginx
+    return logs.count_documents(a)
 
-# Get total logs
-total_logs = collection.count_documents({})
-# Get methods
-methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-methods_count = {method: collection.count_documents({"method": method}) for method in methods}
-# Get status check
-status_counts = collection.count_documents({"method": "GET", "path": "/status"})
-# Print
-print(f"{total_logs} logs")
-print("Methods:")
-for methods in methods:
-    print(f"\tmethod {methods}: {methods_count[methods]}")
-print(f"{status_counts} status check")
+
+def main():
+    """ provides some stats about Nginx logs stored in MongoDB """
+    print(f"{helper({})} logs")
+    print("Methods:")
+    print(f"\tmethod GET: {helper({'method': 'GET'})}")
+    print(f"\tmethod POST: {helper({'method': 'POST'})}")
+    print(f"\tmethod PUT: {helper({'method': 'PUT'})}")
+    print(f"\tmethod PATCH: {helper({'method': 'PATCH'})}")
+    print(f"\tmethod DELETE: {helper({'method': 'DELETE'})}")
+    print(f"{helper({'method': 'GET', 'path': '/status'})} status check")
+
+
+if __name__ == "__main__":
+    main()
