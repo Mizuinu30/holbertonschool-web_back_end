@@ -10,3 +10,9 @@ export function taskFirst() {
     combination += getLast();
     return combination;
   }
+
+  {
+    "scripts"; {
+      "test"; "jest"
+    }
+  }
