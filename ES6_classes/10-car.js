@@ -33,12 +33,12 @@ export default class Car {
     const newCar = new this.constructor();
     for (const key in this) {
       if (typeof this[key] === 'function') {
-        newCar[key] = this[key].bind(newCar);
-    }
-        else {
+    newCar[key] = this[key].bind(newCar);
+      }
+      else {
         newCar[key] = this[key];
+      }
     }
-  }
-  return newCar;
+    return newCar;
 }
 }
