@@ -1,4 +1,4 @@
-import Car from './10-car';
+import Car from './10-car;
 
 class EVCar extends Car {
   constructor(brand, motor, color, range) {
@@ -7,6 +7,7 @@ class EVCar extends Car {
   }
 
   cloneCar() {
-    return new Car(this._brand, this._motor, this._color);
+    // Clone the EVCar including its specific property _range
+    return new this.constructor(this._brand, this._motor, this._color, this._range);
   }
 }
