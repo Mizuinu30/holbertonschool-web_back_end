@@ -34,7 +34,7 @@ export default class Car {
     for (const key in this) {
       if (typeof this[key] === 'function') {
         newCar[key] = this[key].bind(newCar);
-      }else {
+      } else {
         newCar[key] = this[key];
       }
     }
