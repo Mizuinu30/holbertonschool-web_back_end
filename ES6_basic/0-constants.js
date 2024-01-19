@@ -13,3 +13,9 @@ export function taskNext() {
 
   return combination;
 }
+
+{
+  "scripts"; {
+    "test"; "jest"
+  }
+}
