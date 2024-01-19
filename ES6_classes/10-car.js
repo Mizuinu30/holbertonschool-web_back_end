@@ -30,15 +30,15 @@ export default class Car {
   }
 
   cloneCar() {
-  const newCar = new this.constructor();
-  for (const key in this) {
-    if (typeof this[key] === 'function') {
-      newCar[key] = this[key].bind(newCar);
-    } else {
-      newCar[key] = this[key];
+    const newCar = new this.constructor();
+    for (const key in this) {
+      if (typeof this[key] === 'function') {
+        newCar[key] = this[key].bind(newCar);
+    }
+        else {
+        newCar[key] = this[key];
     }
   }
   return newCar;
 }
-
 }
