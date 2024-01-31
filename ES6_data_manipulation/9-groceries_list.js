@@ -7,6 +7,3 @@ function groceriesList() {
   groceries.set('Banana', 5);
   return groceries;
 }
-
-const myGroceries = groceriesList();
-console.log(myGroceries);
