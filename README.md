@@ -26,7 +26,11 @@ cd holbertonschool-web_back_end
 Explain how others can contribute to the project. Include guidelines for pull requests, coding standards, and any other requirements for contributing.
 
 ## License
-Specify the license under which the project is released, if applicable.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 ## Acknowledgments
 Thank those who have contributed to the project, including instructors, peers, and any other collaborators.
+
+## Author
+Juan Silva - [Github](https://github.com/Mizuinu30) / [linkedin] https://www.linkedin.com/in/juan-silva-005ba1222/
